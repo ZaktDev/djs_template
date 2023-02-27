@@ -13,10 +13,9 @@ const client = new Client({
 
 client.commands = new Collection();
 client.config = require("./config.json");
-client.messages = require("./messages.json");
 
 client
-  .login(process.env.token)
+  .login(client.config.token)
   .then(() => {
     loadCommands(client);
     loadEvents(client);
