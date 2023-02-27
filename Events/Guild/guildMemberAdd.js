@@ -6,7 +6,7 @@ module.exports = {
 
   async execute(member) {
     const {user, guild} = member;
-    const c = await guild.channels.cache.get("")
+    const c = member.channels.cache.get("")
     const welcomeMessage = `Bienvenido <@${member.id}>`;
     
     const welcomeEmbed = new EmbedBuilder()
@@ -18,7 +18,6 @@ module.exports = {
     .setTimestamp();
 
 
-    memberLogs.send({embeds: [welcomeEmbed]});
-    console.log(`${member.id} joined the guild.`)
+    c.send({embeds: [welcomeEmbed]});
   },
 };
