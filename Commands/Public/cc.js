@@ -3,14 +3,16 @@ const { SlashCommandBuilder, CommandInteraction, Client, EmbedBuilder} = require
 module.exports = {
   data: new SlashCommandBuilder()
   .setName('cc')
-  .setDescription('Remove certain amount of messages')
+  .setDescription('Borra una cierta cantidad de mensajes.')
   .addIntegerOption(option =>
-		  option.setName('amount')
-			.setDescription('Amount of messages to be deleted.')
+		  option.setName('cantidad')
+			.setDescription('Cantidad de mensajes que se borraran.')
 			.setRequired(true)
+		    	.setMaxValue(99)
+		    	.setMinValue(1)
     ),
   async execute(interaction, client) {
-    const amount = interaction.options.getInteger('amount')
+    const amount = interaction.options.getInteger('cantidad')
 
     if (amount > 100)
       return interaction.followUp({
@@ -27,8 +29,7 @@ module.exports = {
 
    const succesEmbed = new EmbedBuilder()
    .setColor(0x32a852)
-   .setTitle(":white_check_mark: Succes!")
-   .setDescription(`Succesfully deleted ${filtered.size - 1} message(s).`)
+   .setDescription(`Correctamente borrado(s) ${filtered.size - 1} mensaje(s).`)
 
    await interaction.reply({
      embeds: [succesEmbed]
