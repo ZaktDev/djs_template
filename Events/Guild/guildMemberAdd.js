@@ -6,7 +6,7 @@ module.exports = {
 
   async execute(member) {
     const {user, guild} = member;
-    const c = member.channels.cache.get("")
+    const c = member.guild.channels.cache.get("")
     const welcomeMessage = `Bienvenido <@${member.id}>`;
     
     const welcomeEmbed = new EmbedBuilder()
